@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import { Move3d, ZoomIn, MapPin, Video, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Move3d, ZoomIn, MapPin, Video, X, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
 import Room from './components/Room'
 import EditableRoom from './components/EditableRoom'
 import EditorControls from './components/EditorControls'
+import Home from './components/Home'
 
 // Mappatura dei media per laboratori e planetario
 const roomMedia = {
@@ -395,6 +396,7 @@ const rooms = [
 ]
 
 function App() {
+  const [showHome, setShowHome] = useState(true)
   const [hoveredRoom, setHoveredRoom] = useState(null)
   const [selectedRoom, setSelectedRoom] = useState(null)
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0)
@@ -621,7 +623,31 @@ function App() {
   const sunIntensity = isDaytime ? 1.2 : 0.3
 
   return (
-    <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+    <>
+      {/* Home Page */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        transform: showHome ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        zIndex: showHome ? 1000 : 0,
+        overflow: 'auto'
+      }}>
+        <Home onEnter={() => setShowHome(false)} />
+      </div>
+
+      {/* 3D Model Page */}
+      <div style={{ 
+        width: '100vw', 
+        height: '100vh', 
+        position: 'relative',
+        opacity: showHome ? 0 : 1,
+        transition: 'opacity 0.6s ease',
+        pointerEvents: showHome ? 'none' : 'auto'
+      }}>
       {/* Editor Controls */}
       {editorMode && !isMobile && (
         <EditorControls
@@ -652,7 +678,29 @@ function App() {
         boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
         maxWidth: isMobile ? 'calc(100vw - 24px)' : 'auto'
       }}>
-        <h2 style={{ margin: '0 0 12px 0', fontSize: isMobile ? '16px' : '18px', fontWeight: '500', letterSpacing: '-0.01em' }}>Galilei 3D</h2>
+        <button
+          onClick={() => setShowHome(true)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0 0 12px 0',
+            margin: 0,
+            fontSize: isMobile ? '16px' : '18px',
+            fontWeight: '500',
+            letterSpacing: '-0.01em',
+            color: '#1a1a1a',
+            transition: 'opacity 0.2s ease'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.opacity = '0.7'}
+          onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
+        >
+          <ArrowLeft size={isMobile ? 18 : 20} strokeWidth={2} />
+          <span>Indietro</span>
+        </button>
         {!isMobile && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <p style={{ margin: 0, fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px', color: '#666' }}>
@@ -967,6 +1015,7 @@ function App() {
         </mesh>
       </Canvas>
     </div>
+    </>
   )
 }
 
