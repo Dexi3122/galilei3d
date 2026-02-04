@@ -133,7 +133,7 @@ function Home({ onEnter }) {
       <header style={{
         background: '#003d7a',
         color: 'white',
-        padding: '20px 40px',
+        padding: 'clamp(12px, 3vw, 20px) clamp(16px, 4vw, 40px)',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
         <div style={{
@@ -266,8 +266,8 @@ function Home({ onEnter }) {
         }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 500px), 1fr))',
+            gap: 'clamp(24px, 5vw, 40px)',
             alignItems: 'start'
           }}>
             
@@ -413,7 +413,7 @@ function Home({ onEnter }) {
                 </div>
 
                 {/* Tabella */}
-                <div style={{ overflowX: 'auto', padding: '0 40px' }}>
+                <div style={{ overflowX: 'auto', padding: '0 clamp(8px, 5vw, 40px)' }}>
                   <table style={{
                     width: '100%',
                     borderCollapse: 'collapse',
@@ -522,8 +522,8 @@ function Home({ onEnter }) {
         }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 500px), 1fr))',
+            gap: 'clamp(24px, 5vw, 40px)',
             alignItems: 'start'
           }}>
             
@@ -602,7 +602,7 @@ function Home({ onEnter }) {
               </p>
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(140px, 100%), 1fr))',
                 gap: '16px',
                 marginBottom: '40px'
               }}>
