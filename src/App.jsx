@@ -21,7 +21,7 @@ const roomMedia = {
     { type: 'video', url: '/assets/LabFisica2.mp4', title: 'Strumentazione' },
   ],
   'Lab Chimica': [
-    { type: 'video', url: '/assets/LabChimica.mp4', title: 'Tour Lab Chimica' },
+    { type: 'video', url: '/assets/LabChimica2.mp4', title: 'Tour Lab Chimica' },
   ],
   'Lab Informatica': [
     { type: 'video', url: '/assets/LabInfo.mp4', title: 'Aula Computer' },
