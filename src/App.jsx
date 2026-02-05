@@ -10,8 +10,7 @@ import Home from './components/Home'
 // Mappatura dei media per laboratori e planetario
 const roomMedia = {
   'Planetario': [
-    { type: 'video', url: '/assets/Planetario2.mp4', title: 'Cupola Stellare' },
-    { type: 'video', url: '/assets/Planetario.mp4', title: 'Pianeti' },
+    { type: 'video', url: '/assets/Planetario3.mp4', title: 'Tour Planetario' },
   ],
   'Lab Linguistico': [
     { type: 'video', url: '/assets/LabLing.mp4', title: 'Tour Lab Linguistico' },
